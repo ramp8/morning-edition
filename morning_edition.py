@@ -238,27 +238,27 @@ def curate(stories: list[dict], count: int = 10) -> list[dict]:
 # ── Magazine Spreads ───────────────────────────────────────────────
 
 SPREAD_STYLES = [
-    # 1. HERO — big immersive opener
+    # 1. HERO — warm off-white opener with bold orange
     {
         "name": "hero",
-        "bg": "#0a0a0a",
-        "fg": "#fafafa",
-        "accent": "#ff6b35",
+        "bg": "#faf5ef",
+        "fg": "#1a1a1a",
+        "accent": "#e85d26",
         "num_size": "14rem",
-        "num_color": "#ff6b35",
-        "num_opacity": "0.15",
+        "num_color": "#e85d26",
+        "num_opacity": "0.12",
         "num_pos": "top-left",
         "layout": "center",
     },
-    # 2. MIDNIGHT — deep dark with glow
+    # 2. SKY — soft blue editorial
     {
-        "name": "midnight",
-        "bg": "#0d1b2a",
-        "fg": "#e0e1dd",
-        "accent": "#00b4d8",
+        "name": "sky",
+        "bg": "#e8f0fe",
+        "fg": "#1a2a3a",
+        "accent": "#1565c0",
         "num_size": "12rem",
-        "num_color": "#00b4d8",
-        "num_opacity": "0.2",
+        "num_color": "#1565c0",
+        "num_opacity": "0.1",
         "num_pos": "bottom-right",
         "layout": "left",
     },
@@ -274,15 +274,15 @@ SPREAD_STYLES = [
         "num_pos": "top-right",
         "layout": "left",
     },
-    # 4. TERMINAL — green-on-black hacker
+    # 4. TERMINAL — retro green on cream
     {
         "name": "terminal",
-        "bg": "#0c0c0c",
-        "fg": "#33ff33",
-        "accent": "#33ff33",
+        "bg": "#f0f5e8",
+        "fg": "#2e4a1e",
+        "accent": "#33691e",
         "num_size": "8rem",
-        "num_color": "#33ff33",
-        "num_opacity": "0.3",
+        "num_color": "#33691e",
+        "num_opacity": "0.15",
         "num_pos": "top-left",
         "layout": "left",
     },
@@ -298,38 +298,38 @@ SPREAD_STYLES = [
         "num_pos": "left-center",
         "layout": "right-of-num",
     },
-    # 6. SUNSET — warm gradient energy
+    # 6. SUNSET — warm coral energy
     {
         "name": "sunset",
-        "bg": "#ff6f61",
-        "fg": "#ffffff",
-        "accent": "#ffd54f",
+        "bg": "#fff3e0",
+        "fg": "#3e2723",
+        "accent": "#e65100",
         "num_size": "11rem",
-        "num_color": "#ffd54f",
-        "num_opacity": "0.25",
+        "num_color": "#e65100",
+        "num_opacity": "0.12",
         "num_pos": "bottom-left",
         "layout": "center",
     },
-    # 7. FOREST — deep green calm
+    # 7. SAGE — muted green calm
     {
-        "name": "forest",
-        "bg": "#1b4332",
-        "fg": "#d8f3dc",
-        "accent": "#95d5b2",
+        "name": "sage",
+        "bg": "#e8f5e9",
+        "fg": "#1b3a1f",
+        "accent": "#2e7d32",
         "num_size": "10rem",
-        "num_color": "#95d5b2",
-        "num_opacity": "0.18",
+        "num_color": "#2e7d32",
+        "num_opacity": "0.1",
         "num_pos": "top-right",
         "layout": "left",
     },
-    # 8. DATA — blueprint / technical drawing
+    # 8. DATA — amber blueprint
     {
         "name": "data",
-        "bg": "#003049",
-        "fg": "#eae2b7",
-        "accent": "#fcbf49",
+        "bg": "#fff8e1",
+        "fg": "#3e2723",
+        "accent": "#f57f17",
         "num_size": "7rem",
-        "num_color": "#fcbf49",
+        "num_color": "#f57f17",
         "num_opacity": "0.15",
         "num_pos": "bottom-left",
         "layout": "left",
@@ -337,24 +337,24 @@ SPREAD_STYLES = [
     # 9. LAVENDER — soft creative
     {
         "name": "lavender",
-        "bg": "#2d1b69",
-        "fg": "#e8e0ff",
-        "accent": "#b388ff",
+        "bg": "#ede7f6",
+        "fg": "#311b5e",
+        "accent": "#6a1b9a",
         "num_size": "9rem",
-        "num_color": "#b388ff",
-        "num_opacity": "0.2",
+        "num_color": "#6a1b9a",
+        "num_opacity": "0.1",
         "num_pos": "top-left",
         "layout": "center",
     },
     # 10. BIG STAT — number IS the story
     {
         "name": "big-stat",
-        "bg": "#f5f5f5",
+        "bg": "#f5f0eb",
         "fg": "#1a1a1a",
-        "accent": "#ff6b35",
+        "accent": "#e85d26",
         "num_size": "16rem",
-        "num_color": "#ff6b35",
-        "num_opacity": "0.1",
+        "num_color": "#e85d26",
+        "num_opacity": "0.08",
         "num_pos": "center",
         "layout": "over-num",
     },
@@ -395,7 +395,7 @@ def render_spread(story: dict, index: int) -> str:
     # Terminal-style prefix
     prefix = ""
     if s["name"] == "terminal":
-        prefix = '<div style="font-size:1.1rem;opacity:0.6;margin-bottom:0.5rem;">$ cat story.md</div>'
+        prefix = '<div style="font-size:1.1rem;opacity:0.5;margin-bottom:0.5rem;">$ cat story.md</div>'
     elif s["name"] == "academic":
         prefix = (
             '<div style="font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;opacity:0.5;margin-bottom:0.5rem;">Vol. CMXCVIII · No. '
@@ -492,8 +492,8 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
             font-family: 'Inter', sans-serif;
             font-size: 1.2rem;
             padding: 0.6rem 0;
-            border-bottom: 1px solid #ffffff15;
-            color: #cccccc;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
         "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">{i + 1:02d}</span>{s.get("title", "Untitled")}{flag}</div>"""
 
     return f"""<!DOCTYPE html>
@@ -508,7 +508,7 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         html {{ scroll-behavior: smooth; }}
-        body {{ background: #0a0a0a; }}
+        body {{ background: #f5f0eb; }}
         a {{ transition: opacity 0.2s; }}
         a:hover {{ opacity: 0.8; }}
         @media (max-width: 768px) {{
@@ -520,8 +520,8 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
 <body>
     <!-- COVER -->
     <section style="
-        background: #0a0a0a;
-        color: #fafafa;
+        background: #faf5ef;
+        color: #1a1a1a;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -531,8 +531,8 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
         padding: 4rem;
     ">
         <div style="font-family:'Inter',sans-serif;font-size:1rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.4;margin-bottom:2rem;">Daily Digest</div>
-        <h1 style="font-family:'Fraunces',serif;font-size:6rem;font-weight:900;line-height:1;margin-bottom:1rem;">Morning<br>Edition</h1>
-        <div style="font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:300;opacity:0.6;margin-bottom:4rem;">{date_str}</div>
+        <h1 style="font-family:'Fraunces',serif;font-size:6rem;font-weight:900;line-height:1;margin-bottom:1rem;color:#e85d26;">Morning<br>Edition</h1>
+        <div style="font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:300;opacity:0.5;margin-bottom:4rem;">{date_str}</div>
         <div style="width:400px;max-width:100%;text-align:left;">
             {toc_items}
         </div>
@@ -543,8 +543,8 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
 
     <!-- BACK COVER -->
     <section style="
-        background: #0a0a0a;
-        color: #fafafa;
+        background: #faf5ef;
+        color: #1a1a1a;
         min-height: 60vh;
         display: flex;
         flex-direction: column;
@@ -553,7 +553,7 @@ def render_magazine(stories: list[dict], date_str: str) -> str:
         text-align: center;
         padding: 4rem;
     ">
-        <div style="font-family:'Fraunces',serif;font-size:3rem;font-weight:700;opacity:0.3;">∎</div>
+        <div style="font-family:'Fraunces',serif;font-size:3rem;font-weight:700;opacity:0.2;">∎</div>
         <div style="font-family:'Inter',sans-serif;font-size:1rem;opacity:0.3;margin-top:2rem;">
             Morning Edition · {date_str}<br>
             Hacker News × Your Taste Profile
