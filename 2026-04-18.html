@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-04-18</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: #f5f0eb; }
+        a { transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+        .news-spread {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        @media (max-width: 768px) {
+            section { padding: 4rem 2rem !important; }
+            h2 { font-size: 2.2rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- COVER -->
+    <section style="
+        background: #faf5ef;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 4rem;
+    ">
+        <div style="font-family:'Inter',sans-serif;font-size:1rem;letter-spacing:0.3em;text-transform:uppercase;opacity:0.4;margin-bottom:2rem;">Daily Digest</div>
+        
+        <div style="
+            margin-bottom: 2rem;
+            padding: 1rem 1.2rem;
+            width: min(820px, 100%);
+            border: 1px solid #f2e3da;
+            border-radius: 10px;
+            background: #fff9f4;
+            box-shadow: 0 2px 8px rgba(52, 33, 20, 0.06);
+            text-align: left;
+        ">
+            <div style="font-family:'Inter',sans-serif;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.55;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.45rem;">
+                <i class="ph ph-map-pin" aria-hidden="true"></i>
+                Wetter · Berlin
+            </div>
+            <div style="font-family:'Inter',sans-serif;font-size:0.95rem;line-height:1.45;letter-spacing:0.01em;color:#2a221e;display:flex;flex-wrap:wrap;gap:0.9rem 1.2rem;">
+                <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#6b5a52;font-weight:500;"><i class="ph ph-cloud" aria-hidden="true"></i>Teilweise bewölkt</span>
+                <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#e85d26;font-weight:600;"><i class="ph ph-thermometer-hot" aria-hidden="true"></i>9,5 °C</span>
+                <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#e85d26;font-weight:600;"><i class="ph ph-thermometer-cold" aria-hidden="true"></i>9,0–20,5 °C</span>
+                <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#6b5a52;font-weight:500;"><i class="ph ph-drop" aria-hidden="true"></i>30 %</span>
+                <span style="display:inline-flex;align-items:center;gap:0.35rem;color:#6b5a52;font-weight:500;"><i class="ph ph-wind" aria-hidden="true"></i>7 km/h</span>
+            </div>
+            
+            <div style="margin-top:0.85rem;padding-top:0.8rem;border-top:1px dashed #1a1a1a1f;">
+                <div style="font-family:'Inter',sans-serif;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;opacity:0.55;margin-bottom:0.4rem;display:flex;align-items:center;gap:0.35rem;">
+                    <i class="ph ph-chart-line" aria-hidden="true"></i>
+                    Stündlicher Verlauf (06–21 Uhr)
+                </div>
+                <svg viewBox="0 0 420 300" width="100%" role="img" aria-label="Stündlicher Verlauf (06 bis 21 Uhr) von Temperatur und Regenwahrscheinlichkeit"><rect x="0" y="0" width="420" height="300" fill="#fffdfb"/><line x1="28" y1="244.00" x2="400" y2="244.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="190.50" x2="400" y2="190.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="137.00" x2="400" y2="137.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="83.50" x2="400" y2="83.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="30.00" x2="400" y2="30.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><rect x="21.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="46.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="70.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="95.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="120.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="145.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="170.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="194.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="219.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="244.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="269.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="294.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="318.86" y="237.58" width="13.48" height="6.42" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="343.66" y="179.80" width="13.48" height="64.20" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="368.46" y="190.50" width="13.48" height="53.50" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="393.26" y="222.60" width="13.48" height="21.40" fill="#2f80ed" opacity="0.20" rx="1.8"/><path d="M28.00 240.28 L52.80 244.00 L77.60 234.70 L102.40 208.64 L127.20 173.29 L152.00 128.63 L176.80 89.55 L201.60 65.36 L226.40 48.61 L251.20 35.58 L276.00 31.86 L300.80 30.00 L325.60 33.72 L350.40 41.17 L375.20 48.61 L400.00 72.80" fill="none" stroke="#e85d26" stroke-width="2.2"/><circle cx="28.00" cy="240.28" r="2.8" fill="#e85d26"/><circle cx="52.80" cy="244.00" r="2.8" fill="#e85d26"/><circle cx="77.60" cy="234.70" r="2.8" fill="#e85d26"/><circle cx="102.40" cy="208.64" r="2.8" fill="#e85d26"/><circle cx="127.20" cy="173.29" r="2.8" fill="#e85d26"/><circle cx="152.00" cy="128.63" r="2.8" fill="#e85d26"/><circle cx="176.80" cy="89.55" r="2.8" fill="#e85d26"/><circle cx="201.60" cy="65.36" r="2.8" fill="#e85d26"/><circle cx="226.40" cy="48.61" r="2.8" fill="#e85d26"/><circle cx="251.20" cy="35.58" r="2.8" fill="#e85d26"/><circle cx="276.00" cy="31.86" r="2.8" fill="#e85d26"/><circle cx="300.80" cy="30.00" r="2.8" fill="#e85d26"/><circle cx="325.60" cy="33.72" r="2.8" fill="#e85d26"/><circle cx="350.40" cy="41.17" r="2.8" fill="#e85d26"/><circle cx="375.20" cy="48.61" r="2.8" fill="#e85d26"/><circle cx="400.00" cy="72.80" r="2.8" fill="#e85d26"/><text x="28.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">06:00</text><text x="102.40" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">09:00</text><text x="176.80" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">12:00</text><text x="251.20" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">15:00</text><text x="325.60" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">18:00</text><text x="400.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">21:00</text><text x="28" y="18" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2f80ed" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Regen % (Balken)</text><text x="28" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e85d26" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Temperatur °C (Linie)</text></svg>
+            </div>
+            
+            <div style="font-family:'Inter',sans-serif;font-size:0.75rem;opacity:0.4;margin-top:0.45rem;display:flex;align-items:center;gap:0.35rem;">
+                <i class="ph ph-database" aria-hidden="true"></i>
+                Quelle: Open-Meteo
+            </div>
+        </div>
+        
+        <h1 style="font-family:'Fraunces',serif;font-size:6rem;font-weight:900;line-height:1;margin-bottom:1rem;color:#e85d26;">Morning<br>Edition</h1>
+        <div style="font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:300;opacity:0.5;margin-bottom:4rem;">2026-04-18</div>
+        <div style="width:400px;max-width:100%;text-align:left;">
+            <div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">01</span>Healthchecks.io now uses self-hosted object storage ⚑</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">02</span>The Unix executable as a Smalltalk method (2025) [video] ⚑</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">03</span>How to Host a Blog on a Subdirectory Instead of a Subdomain (2025)</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">04</span>Claude Design</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">05</span>Towards trust in Emacs</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">06</span>The Gregorio project – GPL tools for typesetting Gregorian chant</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">07</span>Solitaire simulator for finding the best strategy: Current record is 8.590%</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">08</span>Ada, its design, and the language that built the languages</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">09</span>Tesla tells HW3 owner to 'be patient' after 7 years of waiting for FSD</div><div style="
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #1a1a1a10;
+            color: #555;
+        "><span style="color:#ff6b35;font-weight:700;font-family:'Fraunces',serif;margin-right:1rem;">10</span>Are the costs of AI agents also rising exponentially? (2025) ⚑</div>
+        </div>
+        <div style="font-family:'Inter',sans-serif;font-size:0.85rem;opacity:0.25;margin-top:4rem;">Curated from Hacker News · 10 stories that matter</div>
+    </section>
+
+    
+    <section class="news-spread" data-spread-num="1" style="
+        background: #faf5ef;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 14rem;
+            font-weight: 900;
+            color: #e85d26;
+            opacity: 0.12;
+            line-height: 1;
+            top: -2rem; left: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">01</div>
+
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; position: relative; z-index: 2;">
+            
+            <div style="
+            display:inline-block;
+            background:#e85d26;
+            color:#faf5ef;
+            font-family:'Inter',sans-serif;
+            font-weight:800;
+            font-size:0.85rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            padding:0.35rem 0.9rem;
+            border-radius:3px;
+            margin-bottom:1.2rem;
+        ">⚑ For You</div><br>
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #1a1a1a;
+            "><a href="https://blog.healthchecks.io/2026/04/healthchecks-io-now-uses-self-hosted-object-storage/" style="color:inherit;text-decoration:none;border-bottom:2px solid #e85d2640;" target="_blank">Healthchecks.io now uses self-hosted object storage</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>zdw</strong> · 161 points · 67 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47806348" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #e85d26;
+                text-decoration: none;
+                border-bottom: 2px solid #e85d26;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="2" style="
+        background: #e8f0fe;
+        color: #1a2a3a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 12rem;
+            font-weight: 900;
+            color: #1565c0;
+            opacity: 0.1;
+            line-height: 1;
+            bottom: -2rem; right: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">02</div>
+
+        <div style="max-width: 650px; position: relative; z-index: 2;">
+            
+            <div style="
+            display:inline-block;
+            background:#1565c0;
+            color:#e8f0fe;
+            font-family:'Inter',sans-serif;
+            font-weight:800;
+            font-size:0.85rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            padding:0.35rem 0.9rem;
+            border-radius:3px;
+            margin-bottom:1.2rem;
+        ">⚑ For You</div><br>
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #1a2a3a;
+            "><a href="https://www.youtube.com/watch?v=sZjPQ7vtLNA" style="color:inherit;text-decoration:none;border-bottom:2px solid #1565c040;" target="_blank">The Unix executable as a Smalltalk method (2025) [video]</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>surprisetalk</strong> · 47 points · 2 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47794311" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #1565c0;
+                text-decoration: none;
+                border-bottom: 2px solid #1565c0;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="3" style="
+        background: #fce4ec;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 10rem;
+            font-weight: 900;
+            color: #c62828;
+            opacity: 0.9;
+            line-height: 1;
+            top: -2rem; right: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">03</div>
+
+        <div style="max-width: 650px; position: relative; z-index: 2;">
+            
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #1a1a1a;
+            "><a href="https://www.davidma.org/blog/2025-11-14-host-your-blog-on-a-subdirectory/" style="color:inherit;text-decoration:none;border-bottom:2px solid #c6282840;" target="_blank">How to Host a Blog on a Subdirectory Instead of a Subdomain (2025)</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>taikon</strong> · 24 points · 16 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47811442" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #c62828;
+                text-decoration: none;
+                border-bottom: 2px solid #c62828;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="4" style="
+        background: #f0f5e8;
+        color: #2e4a1e;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: #33691e;
+            opacity: 0.15;
+            line-height: 1;
+            top: -2rem; left: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">04</div>
+
+        <div style="max-width: 650px; position: relative; z-index: 2;">
+            <div style="font-size:1.1rem;opacity:0.5;margin-bottom:0.5rem;">$ cat story.md</div>
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #2e4a1e;
+            "><a href="https://www.anthropic.com/news/claude-design-anthropic-labs" style="color:inherit;text-decoration:none;border-bottom:2px solid #33691e40;" target="_blank">Claude Design</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>meetpateltech</strong> · 955 points · 633 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47806725" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #33691e;
+                text-decoration: none;
+                border-bottom: 2px solid #33691e;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="5" style="
+        background: #faf8f5;
+        color: #2c2c2c;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 9rem;
+            font-weight: 900;
+            color: #1a5276;
+            opacity: 0.12;
+            line-height: 1;
+            top: 50%; left: -1rem; transform: translateY(-50%);
+            user-select: none;
+            pointer-events: none;
+        ">05</div>
+
+        <div style="margin-left: 5rem; position: relative; z-index: 2;">
+            <div style="font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;opacity:0.5;margin-bottom:0.5rem;">Vol. CMXCVIII · No. 5</div>
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #2c2c2c;
+            "><a href="https://eshelyaron.com/posts/2026-04-15-towards-trust-in-emacs.html" style="color:inherit;text-decoration:none;border-bottom:2px solid #1a527640;" target="_blank">Towards trust in Emacs</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>eshelyaron</strong> · 73 points · 7 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47778938" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #1a5276;
+                text-decoration: none;
+                border-bottom: 2px solid #1a5276;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="6" style="
+        background: #fff3e0;
+        color: #3e2723;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 11rem;
+            font-weight: 900;
+            color: #e65100;
+            opacity: 0.12;
+            line-height: 1;
+            bottom: -2rem; left: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">06</div>
+
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; position: relative; z-index: 2;">
+            
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #3e2723;
+            "><a href="https://gregorio-project.github.io/index.html" style="color:inherit;text-decoration:none;border-bottom:2px solid #e6510040;" target="_blank">The Gregorio project – GPL tools for typesetting Gregorian chant</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>mcookly</strong> · 59 points · 9 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47806899" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #e65100;
+                text-decoration: none;
+                border-bottom: 2px solid #e65100;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="7" style="
+        background: #e8f5e9;
+        color: #1b3a1f;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 10rem;
+            font-weight: 900;
+            color: #2e7d32;
+            opacity: 0.1;
+            line-height: 1;
+            top: -2rem; right: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">07</div>
+
+        <div style="max-width: 650px; position: relative; z-index: 2;">
+            
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #1b3a1f;
+            "><a href="https://github.com/dacracot/Klondike3-Simulator" style="color:inherit;text-decoration:none;border-bottom:2px solid #2e7d3240;" target="_blank">Solitaire simulator for finding the best strategy: Current record is 8.590%</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>PaulHoule</strong> · 44 points · 21 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47801639" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #2e7d32;
+                text-decoration: none;
+                border-bottom: 2px solid #2e7d32;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="8" style="
+        background: #fff8e1;
+        color: #3e2723;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            color: #f57f17;
+            opacity: 0.15;
+            line-height: 1;
+            bottom: -2rem; left: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">08</div>
+
+        <div style="max-width: 650px; position: relative; z-index: 2;">
+            
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #3e2723;
+            "><a href="https://www.iqiipi.com/the-quiet-colossus.html" style="color:inherit;text-decoration:none;border-bottom:2px solid #f57f1740;" target="_blank">Ada, its design, and the language that built the languages</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>mpweiher</strong> · 260 points · 181 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47803844" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #f57f17;
+                text-decoration: none;
+                border-bottom: 2px solid #f57f17;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="9" style="
+        background: #ede7f6;
+        color: #311b5e;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 9rem;
+            font-weight: 900;
+            color: #6a1b9a;
+            opacity: 0.1;
+            line-height: 1;
+            top: -2rem; left: -1rem;
+            user-select: none;
+            pointer-events: none;
+        ">09</div>
+
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; position: relative; z-index: 2;">
+            
+            
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #311b5e;
+            "><a href="https://electrek.co/2026/04/17/tesla-hw3-owners-be-patient-7-years-fsd/" style="color:inherit;text-decoration:none;border-bottom:2px solid #6a1b9a40;" target="_blank">Tesla tells HW3 owner to 'be patient' after 7 years of waiting for FSD</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>breve</strong> · 194 points · 145 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47809347" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #6a1b9a;
+                text-decoration: none;
+                border-bottom: 2px solid #6a1b9a;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <section class="news-spread" data-spread-num="10" style="
+        background: #f5f0eb;
+        color: #1a1a1a;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 4rem;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+    ">
+        <!-- Giant Numeral -->
+        <div style="
+            position: absolute;
+            font-family: 'Fraunces', serif;
+            font-size: 16rem;
+            font-weight: 900;
+            color: #e85d26;
+            opacity: 0.08;
+            line-height: 1;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            user-select: none;
+            pointer-events: none;
+        ">10</div>
+
+        <div style="position: relative; z-index: 2; text-align: center;">
+            
+            <div style="
+            display:inline-block;
+            background:#e85d26;
+            color:#f5f0eb;
+            font-family:'Inter',sans-serif;
+            font-weight:800;
+            font-size:0.85rem;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            padding:0.35rem 0.9rem;
+            border-radius:3px;
+            margin-bottom:1.2rem;
+        ">⚑ For You</div><br>
+            <h2 style="
+                font-family: 'Fraunces', serif;
+                font-size: 3.2rem;
+                font-weight: 700;
+                line-height: 1.15;
+                margin-bottom: 1.5rem;
+                color: #1a1a1a;
+            "><a href="https://www.tobyord.com/writing/hourly-costs-for-ai-agents" style="color:inherit;text-decoration:none;border-bottom:2px solid #e85d2640;" target="_blank">Are the costs of AI agents also rising exponentially? (2025)</a></h2>
+
+            <div style="
+                font-family: 'Inter', sans-serif;
+                font-size: 1.15rem;
+                line-height: 1.6;
+                opacity: 0.7;
+                margin-bottom: 2rem;
+            ">
+                by <strong>louiereederson</strong> · 166 points · 39 comments
+            </div>
+
+            <a href="https://news.ycombinator.com/item?id=47778922" style="
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: #e85d26;
+                text-decoration: none;
+                border-bottom: 2px solid #e85d26;
+                padding-bottom: 2px;
+            ">Read HN →</a>
+        </div>
+    </section>
+
+    <!-- BACK COVER -->
+    <section style="
+        background: #faf5ef;
+        color: #1a1a1a;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 4rem;
+    ">
+        <div style="font-family:'Fraunces',serif;font-size:3rem;font-weight:700;opacity:0.2;">∎</div>
+        <div style="font-family:'Inter',sans-serif;font-size:1rem;opacity:0.3;margin-top:2rem;">
+            Morning Edition · 2026-04-18<br>
+            Hacker News × Your Taste Profile
+        </div>
+    </section>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+    const spreads = document.querySelectorAll('.news-spread');
+    if (!spreads.length || !window.gsap || !window.ScrollTrigger) {
+        return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.set(spreads, { opacity: 0.88 });
+
+    spreads.forEach((section) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            end: '+=100%',
+            pin: true,
+            pinSpacing: true,
+            scrub: 0.5,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            refreshPriority: 1,
+            fastScrollEnd: true,
+            preventOverlaps: 'news-spread',
+            pinReparent: true,
+            markers: false,
+            onEnter: () => gsap.to(section, { opacity: 1, duration: 0.35, ease: 'power2.out' }),
+            onEnterBack: () => gsap.to(section, { opacity: 1, duration: 0.35, ease: 'power2.out' }),
+            onLeave: () => gsap.to(section, { opacity: 0.88, duration: 0.3, ease: 'power2.out' }),
+            onLeaveBack: () => gsap.to(section, { opacity: 0.88, duration: 0.3, ease: 'power2.out' }),
+        });
+    });
+
+    ScrollTrigger.refresh();
+})();
+</script>
+</html>
