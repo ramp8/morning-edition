@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-04-24</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #faf5ef;
+            --ink: #1a1a1a;
+            --accent: #e85d26;
+            --muted: rgba(26, 26, 26, 0.56);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .cover {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: clamp(2rem, 6vw, 5rem);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(232, 93, 38, 0.14), transparent 28rem),
+                linear-gradient(135deg, #fffaf4, #f3eadf);
+        }
+        .cover-inner { width: min(980px, 100%); }
+        .eyebrow {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(4rem, 13vw, 9.5rem);
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            line-height: 0.82;
+        }
+        .date {
+            margin: 1rem 0 2.5rem;
+            color: var(--muted);
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .weather {
+            margin: 0 0 2rem;
+            padding: 1rem 1.2rem;
+            max-width: 760px;
+            border: 1px solid rgba(232, 93, 38, 0.18);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.58);
+            box-shadow: 0 20px 50px rgba(52, 33, 20, 0.08);
+        }
+        .weather-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            color: #51443c;
+        }
+        .weather strong { color: var(--accent); }
+        .weather-chart {
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed rgba(26, 26, 26, 0.14);
+        }
+        .weather-chart summary {
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .source {
+            margin: 0.5rem 0 0;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.75rem;
+        }
+        .toc {
+            display: grid;
+            gap: 0;
+            max-width: 760px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-top: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li {
+            display: grid;
+            grid-template-columns: 3.2rem 1fr auto;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li > span:first-child {
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-weight: 900;
+        }
+        .toc p { margin: 0; color: #4b423d; }
+        .toc-flag, .flag {
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+        }
+        .dek {
+            margin-top: 2rem;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.86rem;
+        }
+        .issue {
+            display: grid;
+            gap: clamp(1rem, 3vw, 2rem);
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+        .story {
+            position: relative;
+            min-height: 72vh;
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+            border-radius: clamp(20px, 4vw, 42px);
+            background: var(--bg);
+            color: var(--fg);
+            padding: clamp(2rem, 7vw, 6rem);
+        }
+        .story__num {
+            position: absolute;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(7rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 0.8;
+            opacity: var(--num-opacity);
+            pointer-events: none;
+            user-select: none;
+        }
+        .num--top-left .story__num { left: -0.25rem; top: -0.4rem; }
+        .num--top-right .story__num { right: -0.25rem; top: -0.4rem; }
+        .num--bottom-left .story__num { bottom: -0.6rem; left: -0.25rem; }
+        .num--bottom-right .story__num { bottom: -0.6rem; right: -0.25rem; }
+        .num--left-center .story__num { left: -0.5rem; top: 50%; transform: translateY(-50%); }
+        .num--center .story__num { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .story__body {
+            position: relative;
+            z-index: 1;
+            width: min(720px, 100%);
+        }
+        .story--center .story__body, .story--over-num .story__body {
+            margin-inline: auto;
+            text-align: center;
+        }
+        .story--right-of-num .story__body { margin-left: min(8vw, 6rem); }
+        .kicker {
+            margin: 0 0 0.8rem;
+            color: var(--fg);
+            opacity: 0.55;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .story h2 {
+            margin: 0;
+            font-family: Fraunces, serif;
+            font-size: clamp(2.4rem, 6vw, 5.4rem);
+            font-weight: 780;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
+        }
+        .story h2 a {
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 0.08em;
+            text-underline-offset: 0.12em;
+        }
+        .meta {
+            margin: 1.2rem 0 1.6rem;
+            color: var(--fg);
+            opacity: 0.66;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .hn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
+        }
+        .hn-link::after { content: "→"; transition: transform 0.2s; }
+        .hn-link:hover::after { transform: translateX(0.2rem); }
+        .back-cover {
+            min-height: 42vh;
+            display: grid;
+            place-items: center;
+            color: rgba(26, 26, 26, 0.42);
+            text-align: center;
+        }
+        .back-cover strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(26, 26, 26, 0.22);
+            font-family: Fraunces, serif;
+            font-size: 4rem;
+            line-height: 1;
+        }
+        @media (max-width: 768px) {
+            .cover { align-items: start; }
+            .toc li { grid-template-columns: 2.4rem 1fr; }
+            .toc-flag { display: none; }
+            .story {
+                min-height: auto;
+                border-radius: 24px;
+                padding: 3rem 1.5rem;
+            }
+            .story--right-of-num .story__body { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <div class="cover-inner">
+            <p class="eyebrow">Daily Digest</p>
+            
+        <aside class="weather">
+            <p class="eyebrow">Wetter · Berlin</p>
+            <div class="weather-grid">
+                <span>Bewölkt</span>
+                <strong>7,1 °C</strong>
+                <strong>6,5–17,4 °C</strong>
+                <span>Regen 0 %</span>
+                <span>Wind 15 km/h</span>
+            </div>
+            
+            <details class="weather-chart">
+                <summary>Stündlicher Verlauf</summary>
+                <svg viewBox="0 0 420 300" width="100%" role="img" aria-label="Stündlicher Verlauf (06 bis 21 Uhr) von Temperatur und Regenwahrscheinlichkeit"><rect x="0" y="0" width="420" height="300" fill="#fffdfb"/><line x1="28" y1="244.00" x2="400" y2="244.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="190.50" x2="400" y2="190.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="137.00" x2="400" y2="137.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="83.50" x2="400" y2="83.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="30.00" x2="400" y2="30.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><rect x="21.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="46.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="70.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="95.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="120.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="145.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="170.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="194.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="219.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="244.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="269.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="294.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="318.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="343.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="368.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="393.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><path d="M28.00 244.00 L52.80 238.11 L77.60 232.22 L102.40 218.48 L127.20 196.88 L152.00 171.36 L176.80 147.80 L201.60 118.35 L226.40 90.86 L251.20 67.30 L276.00 43.74 L300.80 31.96 L325.60 30.00 L350.40 35.89 L375.20 47.67 L400.00 77.12" fill="none" stroke="#e85d26" stroke-width="2.2"/><circle cx="28.00" cy="244.00" r="2.8" fill="#e85d26"/><circle cx="52.80" cy="238.11" r="2.8" fill="#e85d26"/><circle cx="77.60" cy="232.22" r="2.8" fill="#e85d26"/><circle cx="102.40" cy="218.48" r="2.8" fill="#e85d26"/><circle cx="127.20" cy="196.88" r="2.8" fill="#e85d26"/><circle cx="152.00" cy="171.36" r="2.8" fill="#e85d26"/><circle cx="176.80" cy="147.80" r="2.8" fill="#e85d26"/><circle cx="201.60" cy="118.35" r="2.8" fill="#e85d26"/><circle cx="226.40" cy="90.86" r="2.8" fill="#e85d26"/><circle cx="251.20" cy="67.30" r="2.8" fill="#e85d26"/><circle cx="276.00" cy="43.74" r="2.8" fill="#e85d26"/><circle cx="300.80" cy="31.96" r="2.8" fill="#e85d26"/><circle cx="325.60" cy="30.00" r="2.8" fill="#e85d26"/><circle cx="350.40" cy="35.89" r="2.8" fill="#e85d26"/><circle cx="375.20" cy="47.67" r="2.8" fill="#e85d26"/><circle cx="400.00" cy="77.12" r="2.8" fill="#e85d26"/><text x="28.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">06:00</text><text x="102.40" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">09:00</text><text x="176.80" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">12:00</text><text x="251.20" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">15:00</text><text x="325.60" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">18:00</text><text x="400.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">21:00</text><text x="28" y="18" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2f80ed" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Regen % (Balken)</text><text x="28" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e85d26" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Temperatur °C (Linie)</text></svg>
+            </details>
+            
+            <p class="source">Quelle: Open-Meteo</p>
+        </aside>
+        
+            <h1>Morning<br>Edition</h1>
+            <p class="date">2026-04-24</p>
+            <ol class="toc">
+                <li><span>01</span><p>Bitwarden CLI compromised in ongoing Checkmarx supply chain campaign</p></li><li><span>02</span><p>Nev – keyboard focused GUI and terminal text editor</p></li><li><span>03</span><p>We found a stable Firefox identifier linking all your private Tor identities</p></li><li><span>04</span><p>Your hex editor should color-code bytes</p></li><li><span>05</span><p>Investigation uncovers two sophisticated telecom surveillance campaigns</p></li><li><span>06</span><p>Show HN: Honker – Postgres NOTIFY/LISTEN Semantics for SQLite</p></li><li><span>07</span><p>Writing a C Compiler, in Zig (2025)</p></li><li><span>08</span><p>TorchTPU: Running PyTorch Natively on TPUs at Google Scale</p></li><li><span>09</span><p>GPT-5.5: Mythos-Like Hacking, Open to All</p></li><li><span>10</span><p>AI run store in SF can&#x27;t stop ordering candies and paying women less.</p></li>
+            </ol>
+            <p class="dek">Curated from Hacker News · 10 stories that matter</p>
+        </div>
+    </header>
+
+    <main class="issue">
+        
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#faf5ef;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">01</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://socket.dev/blog/bitwarden-cli-compromised" target="_blank" rel="noreferrer">Bitwarden CLI compromised in ongoing Checkmarx supply chain campaign</a></h2>
+            <p class="meta">by <strong>tosh</strong> · 710 points · 347 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47876043" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-right"
+        style="--bg:#e8f0fe;--fg:#1a2a3a;--accent:#1565c0;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">02</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://github.com/Nimaoth/Nev" target="_blank" rel="noreferrer">Nev – keyboard focused GUI and terminal text editor</a></h2>
+            <p class="meta">by <strong>archargelod</strong> · 4 points · 0 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47884872" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#fce4ec;--fg:#1a1a1a;--accent:#c62828;--num-opacity:0.9;"
+    >
+        <div class="story__num" aria-hidden="true">03</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://fingerprint.com/blog/firefox-tor-indexeddb-privacy-vulnerability/" target="_blank" rel="noreferrer">We found a stable Firefox identifier linking all your private Tor identities</a></h2>
+            <p class="meta">by <strong>danpinto</strong> · 904 points · 276 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47866697" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-left"
+        style="--bg:#f0f5e8;--fg:#2e4a1e;--accent:#33691e;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">04</div>
+        <div class="story__body">
+            <p class="kicker">$ cat story.md</p>
+            
+            <h2><a href="https://simonomi.dev/blog/color-code-your-bytes/" target="_blank" rel="noreferrer">Your hex editor should color-code bytes</a></h2>
+            <p class="meta">by <strong>tobr</strong> · 547 points · 150 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47846688" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--right-of-num num--left-center"
+        style="--bg:#faf8f5;--fg:#2c2c2c;--accent:#1a5276;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">05</div>
+        <div class="story__body">
+            <p class="kicker">Vol. CMXCVIII · No. 5</p>
+            
+            <h2><a href="https://techcrunch.com/2026/04/23/surveillance-vendors-caught-abusing-access-to-telcos-to-track-peoples-phone-locations-researchers-say/" target="_blank" rel="noreferrer">Investigation uncovers two sophisticated telecom surveillance campaigns</a></h2>
+            <p class="meta">by <strong>mentalgear</strong> · 377 points · 130 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47874814" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--bottom-left"
+        style="--bg:#fff3e0;--fg:#3e2723;--accent:#e65100;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">06</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://github.com/russellromney/honker" target="_blank" rel="noreferrer">Show HN: Honker – Postgres NOTIFY/LISTEN Semantics for SQLite</a></h2>
+            <p class="meta">by <strong>russellthehippo</strong> · 244 points · 61 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47874647" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#e8f5e9;--fg:#1b3a1f;--accent:#2e7d32;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">07</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://ar-ms.me/thoughts/c-compiler-1-zig/" target="_blank" rel="noreferrer">Writing a C Compiler, in Zig (2025)</a></h2>
+            <p class="meta">by <strong>tosh</strong> · 150 points · 41 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47873694" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-left"
+        style="--bg:#fff8e1;--fg:#3e2723;--accent:#f57f17;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">08</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://developers.googleblog.com/torchtpu-running-pytorch-natively-on-tpus-at-google-scale/" target="_blank" rel="noreferrer">TorchTPU: Running PyTorch Natively on TPUs at Google Scale</a></h2>
+            <p class="meta">by <strong>mji</strong> · 105 points · 4 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47881786" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#ede7f6;--fg:#311b5e;--accent:#6a1b9a;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">09</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://xbow.com/blog/mythos-like-hacking-open-to-all" target="_blank" rel="noreferrer">GPT-5.5: Mythos-Like Hacking, Open to All</a></h2>
+            <p class="meta">by <strong>rs_rs_rs_rs_rs</strong> · 53 points · 12 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47879330" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--over-num num--center"
+        style="--bg:#f5f0eb;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.08;"
+    >
+        <div class="story__num" aria-hidden="true">10</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://sfist.com/2026/04/21/ai-store-manager-paying-female-employees-less-cant-stop-ordering-candles/" target="_blank" rel="noreferrer">AI run store in SF can&#x27;t stop ordering candies and paying women less.</a></h2>
+            <p class="meta">by <strong>fragmede</strong> · 7 points · 3 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=47885334" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+    </main>
+
+    <footer class="back-cover">
+        <p>
+            <strong>∎</strong>
+            Morning Edition · 2026-04-24<br>
+            Hacker News × Your Taste Profile
+        </p>
+    </footer>
+</body>
+</html>
