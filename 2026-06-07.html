@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-06-07</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #faf5ef;
+            --ink: #1a1a1a;
+            --accent: #e85d26;
+            --muted: rgba(26, 26, 26, 0.56);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .cover {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: clamp(2rem, 6vw, 5rem);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(232, 93, 38, 0.14), transparent 28rem),
+                linear-gradient(135deg, #fffaf4, #f3eadf);
+        }
+        .cover-inner { width: min(980px, 100%); }
+        .eyebrow {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(4rem, 13vw, 9.5rem);
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            line-height: 0.82;
+        }
+        .date {
+            margin: 1rem 0 2.5rem;
+            color: var(--muted);
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .weather {
+            margin: 0 0 2rem;
+            padding: 1rem 1.2rem;
+            max-width: 760px;
+            border: 1px solid rgba(232, 93, 38, 0.18);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.58);
+            box-shadow: 0 20px 50px rgba(52, 33, 20, 0.08);
+        }
+        .weather-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            color: #51443c;
+        }
+        .weather strong { color: var(--accent); }
+        .weather-chart {
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed rgba(26, 26, 26, 0.14);
+        }
+        .weather-chart summary {
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .source {
+            margin: 0.5rem 0 0;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.75rem;
+        }
+        .toc {
+            display: grid;
+            gap: 0;
+            max-width: 760px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-top: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li {
+            display: grid;
+            grid-template-columns: 3.2rem 1fr auto;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li > span:first-child {
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-weight: 900;
+        }
+        .toc p { margin: 0; color: #4b423d; }
+        .toc-flag, .flag {
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+        }
+        .dek {
+            margin-top: 2rem;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.86rem;
+        }
+        .issue {
+            display: grid;
+            gap: clamp(1rem, 3vw, 2rem);
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+        .story {
+            position: relative;
+            min-height: 72vh;
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+            border-radius: clamp(20px, 4vw, 42px);
+            background: var(--bg);
+            color: var(--fg);
+            padding: clamp(2rem, 7vw, 6rem);
+        }
+        .story__num {
+            position: absolute;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(7rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 0.8;
+            opacity: var(--num-opacity);
+            pointer-events: none;
+            user-select: none;
+        }
+        .num--top-left .story__num { left: -0.25rem; top: -0.4rem; }
+        .num--top-right .story__num { right: -0.25rem; top: -0.4rem; }
+        .num--bottom-left .story__num { bottom: -0.6rem; left: -0.25rem; }
+        .num--bottom-right .story__num { bottom: -0.6rem; right: -0.25rem; }
+        .num--left-center .story__num { left: -0.5rem; top: 50%; transform: translateY(-50%); }
+        .num--center .story__num { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .story__body {
+            position: relative;
+            z-index: 1;
+            width: min(720px, 100%);
+        }
+        .story--center .story__body, .story--over-num .story__body {
+            margin-inline: auto;
+            text-align: center;
+        }
+        .story--right-of-num .story__body { margin-left: min(8vw, 6rem); }
+        .kicker {
+            margin: 0 0 0.8rem;
+            color: var(--fg);
+            opacity: 0.55;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .story h2 {
+            margin: 0;
+            font-family: Fraunces, serif;
+            font-size: clamp(2.4rem, 6vw, 5.4rem);
+            font-weight: 780;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
+        }
+        .story h2 a {
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 0.08em;
+            text-underline-offset: 0.12em;
+        }
+        .meta {
+            margin: 1.2rem 0 1.6rem;
+            color: var(--fg);
+            opacity: 0.66;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .hn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
+        }
+        .hn-link::after { content: "→"; transition: transform 0.2s; }
+        .hn-link:hover::after { transform: translateX(0.2rem); }
+        .back-cover {
+            min-height: 42vh;
+            display: grid;
+            place-items: center;
+            color: rgba(26, 26, 26, 0.42);
+            text-align: center;
+        }
+        .back-cover strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(26, 26, 26, 0.22);
+            font-family: Fraunces, serif;
+            font-size: 4rem;
+            line-height: 1;
+        }
+        @media (max-width: 768px) {
+            .cover { align-items: start; }
+            .toc li { grid-template-columns: 2.4rem 1fr; }
+            .toc-flag { display: none; }
+            .story {
+                min-height: auto;
+                border-radius: 24px;
+                padding: 3rem 1.5rem;
+            }
+            .story--right-of-num .story__body { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <div class="cover-inner">
+            <p class="eyebrow">Daily Digest</p>
+            
+            <h1>Morning<br>Edition</h1>
+            <p class="date">2026-06-07</p>
+            <ol class="toc">
+                <li><span>01</span><p>S&amp;P 500 rejects SpaceX, also blocking entry for OpenAI and Anthropic</p></li><li><span>02</span><p>Google to pay SpaceX $920M a month for compute capacity at xAI data centers</p></li><li><span>03</span><p>Open Code Review – An AI-powered code review CLI tool</p><span class="toc-flag">For You</span></li><li><span>04</span><p>ESP32 Bit Pirate, a Hardware Hacking Tool with WebCLI That Speaks Every Protocol</p></li><li><span>05</span><p>Gov.uk has replaced Stripe with Dutch provider Adyen</p></li><li><span>06</span><p>Pentagon raised threat of Israeli spying on U.S. to highest level, sources say</p></li><li><span>07</span><p>pg_durable: Microsoft open sources in-database durable execution</p></li><li><span>08</span><p>South Korean forums will need to scan every images with AI censorship tools</p></li><li><span>09</span><p>Ntsc-rs – open-source video emulation of analog TV and VHS artifacts</p></li><li><span>10</span><p>The Smart TV in Your LivingRoom Is a Node in the AIScraping Economy</p></li>
+            </ol>
+            <p class="dek">Curated from Hacker News · 10 stories that matter</p>
+        </div>
+    </header>
+
+    <main class="issue">
+        
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#faf5ef;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">01</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://arstechnica.com/tech-policy/2026/06/sp-500-blocks-fast-spacex-entry-wont-waive-rule-for-unprofitable-ai-firms/" target="_blank" rel="noreferrer">S&amp;P 500 rejects SpaceX, also blocking entry for OpenAI and Anthropic</a></h2>
+            <p class="meta">by <strong>maltalex</strong> · 1,398 points · 481 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48421442" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-right"
+        style="--bg:#e8f0fe;--fg:#1a2a3a;--accent:#1565c0;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">02</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://www.cnbc.com/2026/06/05/google-to-pay-spacex-920-million-a-month-for-xai-compute-capacity.html" target="_blank" rel="noreferrer">Google to pay SpaceX $920M a month for compute capacity at xAI data centers</a></h2>
+            <p class="meta">by <strong>toephu2</strong> · 209 points · 787 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48417490" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#fce4ec;--fg:#1a1a1a;--accent:#c62828;--num-opacity:0.9;"
+    >
+        <div class="story__num" aria-hidden="true">03</div>
+        <div class="story__body">
+            
+            <span class="flag">For You</span>
+            <h2><a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noreferrer">Open Code Review – An AI-powered code review CLI tool</a></h2>
+            <p class="meta">by <strong>geoffbp</strong> · 276 points · 68 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48406358" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-left"
+        style="--bg:#f0f5e8;--fg:#2e4a1e;--accent:#33691e;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">04</div>
+        <div class="story__body">
+            <p class="kicker">$ cat story.md</p>
+            
+            <h2><a href="https://github.com/geo-tp/ESP32-Bit-Pirate" target="_blank" rel="noreferrer">ESP32 Bit Pirate, a Hardware Hacking Tool with WebCLI That Speaks Every Protocol</a></h2>
+            <p class="meta">by <strong>geotp</strong> · 203 points · 46 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48409306" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--right-of-num num--left-center"
+        style="--bg:#faf8f5;--fg:#2c2c2c;--accent:#1a5276;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">05</div>
+        <div class="story__body">
+            <p class="kicker">Vol. CMXCVIII · No. 5</p>
+            
+            <h2><a href="https://www.theregister.com/public-sector/2026/06/04/govuk-goes-dutch-on-payments-as-it-dumps-stripe/5250763" target="_blank" rel="noreferrer">Gov.uk has replaced Stripe with Dutch provider Adyen</a></h2>
+            <p class="meta">by <strong>toomuchtodo</strong> · 559 points · 214 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48415217" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--bottom-left"
+        style="--bg:#fff3e0;--fg:#3e2723;--accent:#e65100;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">06</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://www.nbcnews.com/politics/national-security/pentagon-raised-threat-israeli-spying-us-highest-level-sources-say-rcna348565" target="_blank" rel="noreferrer">Pentagon raised threat of Israeli spying on U.S. to highest level, sources say</a></h2>
+            <p class="meta">by <strong>MilnerRoute</strong> · 490 points · 386 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48427523" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#e8f5e9;--fg:#1b3a1f;--accent:#2e7d32;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">07</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://github.com/microsoft/pg_durable" target="_blank" rel="noreferrer">pg_durable: Microsoft open sources in-database durable execution</a></h2>
+            <p class="meta">by <strong>coffeemug</strong> · 461 points · 105 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48414367" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-left"
+        style="--bg:#fff8e1;--fg:#3e2723;--accent:#f57f17;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">08</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://discuss.privacyguides.net/t/south-korean-online-communities-will-need-to-scan-every-images-with-ai-censorship-tools/38341" target="_blank" rel="noreferrer">South Korean forums will need to scan every images with AI censorship tools</a></h2>
+            <p class="meta">by <strong>Cider9986</strong> · 266 points · 148 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48406198" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#ede7f6;--fg:#311b5e;--accent:#6a1b9a;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">09</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://ntsc.rs/" target="_blank" rel="noreferrer">Ntsc-rs – open-source video emulation of analog TV and VHS artifacts</a></h2>
+            <p class="meta">by <strong>gregsadetsky</strong> · 316 points · 76 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48428025" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--over-num num--center"
+        style="--bg:#f5f0eb;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.08;"
+    >
+        <div class="story__num" aria-hidden="true">10</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://blog.includesecurity.com/2026/06/the-smart-tv-in-your-livingroom-is-a-node-in-the-aiscraping-economy/" target="_blank" rel="noreferrer">The Smart TV in Your LivingRoom Is a Node in the AIScraping Economy</a></h2>
+            <p class="meta">by <strong>nikcub</strong> · 203 points · 89 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48422993" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+    </main>
+
+    <footer class="back-cover">
+        <p>
+            <strong>∎</strong>
+            Morning Edition · 2026-06-07<br>
+            Hacker News × Your Taste Profile
+        </p>
+    </footer>
+</body>
+</html>
