@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-06-11</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #faf5ef;
+            --ink: #1a1a1a;
+            --accent: #e85d26;
+            --muted: rgba(26, 26, 26, 0.56);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .cover {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: clamp(2rem, 6vw, 5rem);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(232, 93, 38, 0.14), transparent 28rem),
+                linear-gradient(135deg, #fffaf4, #f3eadf);
+        }
+        .cover-inner { width: min(980px, 100%); }
+        .eyebrow {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(4rem, 13vw, 9.5rem);
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            line-height: 0.82;
+        }
+        .date {
+            margin: 1rem 0 2.5rem;
+            color: var(--muted);
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .weather {
+            margin: 0 0 2rem;
+            padding: 1rem 1.2rem;
+            max-width: 760px;
+            border: 1px solid rgba(232, 93, 38, 0.18);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.58);
+            box-shadow: 0 20px 50px rgba(52, 33, 20, 0.08);
+        }
+        .weather-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1rem;
+            color: #51443c;
+        }
+        .weather strong { color: var(--accent); }
+        .weather-chart {
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed rgba(26, 26, 26, 0.14);
+        }
+        .weather-chart summary {
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .source {
+            margin: 0.5rem 0 0;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.75rem;
+        }
+        .toc {
+            display: grid;
+            gap: 0;
+            max-width: 760px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-top: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li {
+            display: grid;
+            grid-template-columns: 3.2rem 1fr auto;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.12);
+        }
+        .toc li > span:first-child {
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-weight: 900;
+        }
+        .toc p { margin: 0; color: #4b423d; }
+        .toc-flag, .flag {
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+        }
+        .dek {
+            margin-top: 2rem;
+            color: rgba(26, 26, 26, 0.38);
+            font-size: 0.86rem;
+        }
+        .issue {
+            display: grid;
+            gap: clamp(1rem, 3vw, 2rem);
+            padding: clamp(1rem, 3vw, 2rem);
+        }
+        .story {
+            position: relative;
+            min-height: 72vh;
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+            border-radius: clamp(20px, 4vw, 42px);
+            background: var(--bg);
+            color: var(--fg);
+            padding: clamp(2rem, 7vw, 6rem);
+        }
+        .story__num {
+            position: absolute;
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-size: clamp(7rem, 20vw, 15rem);
+            font-weight: 900;
+            line-height: 0.8;
+            opacity: var(--num-opacity);
+            pointer-events: none;
+            user-select: none;
+        }
+        .num--top-left .story__num { left: -0.25rem; top: -0.4rem; }
+        .num--top-right .story__num { right: -0.25rem; top: -0.4rem; }
+        .num--bottom-left .story__num { bottom: -0.6rem; left: -0.25rem; }
+        .num--bottom-right .story__num { bottom: -0.6rem; right: -0.25rem; }
+        .num--left-center .story__num { left: -0.5rem; top: 50%; transform: translateY(-50%); }
+        .num--center .story__num { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .story__body {
+            position: relative;
+            z-index: 1;
+            width: min(720px, 100%);
+        }
+        .story--center .story__body, .story--over-num .story__body {
+            margin-inline: auto;
+            text-align: center;
+        }
+        .story--right-of-num .story__body { margin-left: min(8vw, 6rem); }
+        .kicker {
+            margin: 0 0 0.8rem;
+            color: var(--fg);
+            opacity: 0.55;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .story h2 {
+            margin: 0;
+            font-family: Fraunces, serif;
+            font-size: clamp(2.4rem, 6vw, 5.4rem);
+            font-weight: 780;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
+        }
+        .story h2 a {
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 0.08em;
+            text-underline-offset: 0.12em;
+        }
+        .meta {
+            margin: 1.2rem 0 1.6rem;
+            color: var(--fg);
+            opacity: 0.66;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .hn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
+        }
+        .hn-link::after { content: "→"; transition: transform 0.2s; }
+        .hn-link:hover::after { transform: translateX(0.2rem); }
+        .back-cover {
+            min-height: 42vh;
+            display: grid;
+            place-items: center;
+            color: rgba(26, 26, 26, 0.42);
+            text-align: center;
+        }
+        .back-cover strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(26, 26, 26, 0.22);
+            font-family: Fraunces, serif;
+            font-size: 4rem;
+            line-height: 1;
+        }
+        @media (max-width: 768px) {
+            .cover { align-items: start; }
+            .toc li { grid-template-columns: 2.4rem 1fr; }
+            .toc-flag { display: none; }
+            .story {
+                min-height: auto;
+                border-radius: 24px;
+                padding: 3rem 1.5rem;
+            }
+            .story--right-of-num .story__body { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <div class="cover-inner">
+            <p class="eyebrow">Daily Digest</p>
+            
+            <h1>Morning<br>Edition</h1>
+            <p class="date">2026-06-11</p>
+            <ol class="toc">
+                <li><span>01</span><p>Microsoft&#x27;s open source tools were hacked to steal passwords of AI developers</p></li><li><span>02</span><p>Apple reveals new AI architecture built around Google Gemini models</p></li><li><span>03</span><p>Cybersecurity researchers aren&#x27;t happy about the guardrails on Anthropic&#x27;s Fable</p></li><li><span>04</span><p>Ultrafast machine learning on FPGAs via Kolmogorov-Arnold Networks</p></li><li><span>05</span><p>German ruling declares Google liable for false answers in AI Overviews</p></li><li><span>06</span><p>OpenAI mulls slashing prices as it competes with Anthropic for users</p></li><li><span>07</span><p>Building an HTML-first site doubled our users overnight</p></li><li><span>08</span><p>Claude Fable 5</p></li><li><span>09</span><p>macOS Container Machines</p></li><li><span>10</span><p>If Claude Fable stops helping you, you&#x27;ll never know</p></li>
+            </ol>
+            <p class="dek">Curated from Hacker News · 10 stories that matter</p>
+        </div>
+    </header>
+
+    <main class="issue">
+        
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#faf5ef;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">01</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://techcrunch.com/2026/06/08/microsofts-open-source-tools-were-hacked-to-steal-passwords-of-ai-developers/" target="_blank" rel="noreferrer">Microsoft&#x27;s open source tools were hacked to steal passwords of AI developers</a></h2>
+            <p class="meta">by <strong>raffael_de</strong> · 554 points · 193 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48457830" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-right"
+        style="--bg:#e8f0fe;--fg:#1a2a3a;--accent:#1565c0;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">02</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://www.macrumors.com/2026/06/08/apple-reveals-new-ai-architecture/" target="_blank" rel="noreferrer">Apple reveals new AI architecture built around Google Gemini models</a></h2>
+            <p class="meta">by <strong>unclefuzzy</strong> · 730 points · 558 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48450142" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#fce4ec;--fg:#1a1a1a;--accent:#c62828;--num-opacity:0.9;"
+    >
+        <div class="story__num" aria-hidden="true">03</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/" target="_blank" rel="noreferrer">Cybersecurity researchers aren&#x27;t happy about the guardrails on Anthropic&#x27;s Fable</a></h2>
+            <p class="meta">by <strong>speckx</strong> · 389 points · 348 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48478969" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-left"
+        style="--bg:#f0f5e8;--fg:#2e4a1e;--accent:#33691e;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">04</div>
+        <div class="story__body">
+            <p class="kicker">$ cat story.md</p>
+            
+            <h2><a href="https://aarushgupta.io/posts/kan-fpga/" target="_blank" rel="noreferrer">Ultrafast machine learning on FPGAs via Kolmogorov-Arnold Networks</a></h2>
+            <p class="meta">by <strong>ag2718</strong> · 278 points · 49 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48466277" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--right-of-num num--left-center"
+        style="--bg:#faf8f5;--fg:#2c2c2c;--accent:#1a5276;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">05</div>
+        <div class="story__body">
+            <p class="kicker">Vol. CMXCVIII · No. 5</p>
+            
+            <h2><a href="https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/" target="_blank" rel="noreferrer">German ruling declares Google liable for false answers in AI Overviews</a></h2>
+            <p class="meta">by <strong>ahlCVA</strong> · 978 points · 519 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48470248" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--bottom-left"
+        style="--bg:#fff3e0;--fg:#3e2723;--accent:#e65100;--num-opacity:0.12;"
+    >
+        <div class="story__num" aria-hidden="true">06</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://www.cnbc.com/2026/06/11/openai-mulls-slashing-prices-ahead-of-competition-from-anthropic-wsj.html" target="_blank" rel="noreferrer">OpenAI mulls slashing prices as it competes with Anthropic for users</a></h2>
+            <p class="meta">by <strong>agentifysh</strong> · 59 points · 71 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48486486" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--top-right"
+        style="--bg:#e8f5e9;--fg:#1b3a1f;--accent:#2e7d32;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">07</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://mohkohn.co.uk/writing/html-first/" target="_blank" rel="noreferrer">Building an HTML-first site doubled our users overnight</a></h2>
+            <p class="meta">by <strong>edent</strong> · 1,088 points · 493 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48475483" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--left num--bottom-left"
+        style="--bg:#fff8e1;--fg:#3e2723;--accent:#f57f17;--num-opacity:0.15;"
+    >
+        <div class="story__num" aria-hidden="true">08</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank" rel="noreferrer">Claude Fable 5</a></h2>
+            <p class="meta">by <strong>Philpax</strong> · 2,562 points · 2101 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48463808" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--center num--top-left"
+        style="--bg:#ede7f6;--fg:#311b5e;--accent:#6a1b9a;--num-opacity:0.1;"
+    >
+        <div class="story__num" aria-hidden="true">09</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://github.com/apple/container/blob/main/docs/container-machine.md" target="_blank" rel="noreferrer">macOS Container Machines</a></h2>
+            <p class="meta">by <strong>timsneath</strong> · 1,212 points · 423 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48469658" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+
+    <article
+        class="story story--over-num num--center"
+        style="--bg:#f5f0eb;--fg:#1a1a1a;--accent:#e85d26;--num-opacity:0.08;"
+    >
+        <div class="story__num" aria-hidden="true">10</div>
+        <div class="story__body">
+            
+            
+            <h2><a href="https://jonready.com/blog/posts/claude-fable5-is-allowed-to-sabotage-your-app-if-youre-a-competitor.html" target="_blank" rel="noreferrer">If Claude Fable stops helping you, you&#x27;ll never know</a></h2>
+            <p class="meta">by <strong>mips_avatar</strong> · 1,010 points · 494 comments</p>
+            <a class="hn-link" href="https://news.ycombinator.com/item?id=48467896" target="_blank" rel="noreferrer">Read HN</a>
+        </div>
+    </article>
+    </main>
+
+    <footer class="back-cover">
+        <p>
+            <strong>∎</strong>
+            Morning Edition · 2026-06-11<br>
+            Hacker News × Your Taste Profile
+        </p>
+    </footer>
+</body>
+</html>
