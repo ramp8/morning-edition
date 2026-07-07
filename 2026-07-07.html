@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-07-07</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #fffaf4;
+            --ink: #1d161e;
+            --accent: #f97316;
+            --muted: rgba(29, 22, 30, 0.58);
+            --line: rgba(29, 22, 30, 0.10);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .cover {
+            min-height: 100vh;
+            padding: clamp(1.25rem, 5vw, 4rem);
+            background:
+                radial-gradient(circle at 80% 0%, rgba(249, 115, 22, 0.16), transparent 26rem),
+                linear-gradient(135deg, #fffaf4, #f7efe7);
+        }
+        .cover-inner {
+            width: min(960px, 100%);
+            margin: 0 auto;
+        }
+        .eyebrow, .date, .dek, .source, .weather-chart summary {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 750;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        h1 {
+            max-width: 760px;
+            margin: 1.2rem 0 1rem;
+            font-family: Fraunces, serif;
+            font-size: clamp(3.7rem, 12vw, 8.5rem);
+            font-weight: 900;
+            letter-spacing: -0.075em;
+            line-height: 0.86;
+        }
+        .date { margin: 0 0 2rem; }
+        .weather {
+            margin-bottom: 1.6rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.64);
+            box-shadow: 0 24px 70px rgba(52, 33, 20, 0.08);
+        }
+        .weather-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.9rem;
+        }
+        .weather strong { color: var(--accent); }
+        .weather-chart { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+        .weather-chart summary { cursor: pointer; }
+        .source, .dek { margin-top: 1.3rem; }
+        .toc {
+            display: grid;
+            gap: 0.6rem;
+            max-width: 760px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .toc li {
+            display: grid;
+            grid-template-columns: 2.6rem 1fr auto;
+            gap: 0.8rem;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.52);
+        }
+        .toc li > span:first-child, .story-num {
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-weight: 900;
+        }
+        .toc p { margin: 0; color: #463947; }
+        .toc-flag, .flag {
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+        }
+        .issue {
+            display: grid;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .story {
+            min-height: 48vh;
+            padding: clamp(1.4rem, 5vw, 4rem);
+            border: 1px solid color-mix(in srgb, var(--accent), transparent 78%);
+            border-radius: clamp(22px, 4vw, 36px);
+            background:
+                radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent), transparent 86%), transparent 18rem),
+                var(--bg);
+            color: var(--fg);
+            box-shadow: 0 18px 60px rgba(29, 22, 30, 0.07);
+        }
+        .story-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.4rem; }
+        .story-num { font-size: 1.35rem; }
+        .story h2 {
+            max-width: 760px;
+            margin: 0;
+            font-family: Fraunces, serif;
+            font-size: clamp(2.2rem, 6vw, 4.8rem);
+            font-weight: 820;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
+        }
+        .story h2 a { text-decoration: none; }
+        .story h2 a:hover { color: var(--accent); }
+        .meta { margin: 1rem 0 1.4rem; color: color-mix(in srgb, var(--fg), transparent 38%); }
+        .hn-link { color: var(--accent); font-weight: 850; text-decoration: none; }
+        .hn-link::after { content: " →"; }
+        .back-cover {
+            min-height: 28vh;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            text-align: center;
+        }
+        .back-cover strong { display: block; color: rgba(29, 22, 30, 0.22); font-size: 3rem; }
+        @media (max-width: 720px) {
+            .toc li { grid-template-columns: 2.2rem 1fr; }
+            .toc-flag { display: none; }
+            .story { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <div class="cover-inner">
+            <p class="eyebrow">Daily Digest</p>
+            
+        <aside class="weather">
+            <p class="eyebrow">Wetter · Berlin</p>
+            <div class="weather-grid">
+                <span>Bewölkt</span>
+                <strong>18,8 °C</strong>
+                <strong>16,7–20,7 °C</strong>
+                <span>Regen 83 %</span>
+                <span>Wind 14 km/h</span>
+            </div>
+            
+            <details class="weather-chart">
+                <summary>Stündlicher Verlauf</summary>
+                <svg viewBox="0 0 420 300" width="100%" role="img" aria-label="Stündlicher Verlauf (06 bis 21 Uhr) von Temperatur und Regenwahrscheinlichkeit"><rect x="0" y="0" width="420" height="300" fill="#fffdfb"/><line x1="28" y1="244.00" x2="400" y2="244.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="190.50" x2="400" y2="190.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="137.00" x2="400" y2="137.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="83.50" x2="400" y2="83.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="30.00" x2="400" y2="30.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><rect x="21.26" y="169.10" width="13.48" height="74.90" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="46.06" y="119.88" width="13.48" height="124.12" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="70.86" y="141.28" width="13.48" height="102.72" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="95.66" y="115.60" width="13.48" height="128.40" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="120.46" y="104.90" width="13.48" height="139.10" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="145.26" y="66.38" width="13.48" height="177.62" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="170.06" y="94.20" width="13.48" height="149.80" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="194.86" y="158.40" width="13.48" height="85.60" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="219.66" y="205.48" width="13.48" height="38.52" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="244.46" y="222.60" width="13.48" height="21.40" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="269.26" y="211.90" width="13.48" height="32.10" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="294.06" y="211.90" width="13.48" height="32.10" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="318.86" y="169.10" width="13.48" height="74.90" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="343.66" y="151.98" width="13.48" height="92.02" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="368.46" y="151.98" width="13.48" height="92.02" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="393.26" y="216.18" width="13.48" height="27.82" fill="#2f80ed" opacity="0.20" rx="1.8"/><path d="M28.00 236.36 L52.80 244.00 L77.60 213.43 L102.40 167.57 L127.20 152.29 L152.00 152.29 L176.80 167.57 L201.60 152.29 L226.40 159.93 L251.20 91.14 L276.00 60.57 L300.80 30.00 L325.60 37.64 L350.40 83.50 L375.20 137.00 L400.00 190.50" fill="none" stroke="#e85d26" stroke-width="2.2"/><circle cx="28.00" cy="236.36" r="2.8" fill="#e85d26"/><circle cx="52.80" cy="244.00" r="2.8" fill="#e85d26"/><circle cx="77.60" cy="213.43" r="2.8" fill="#e85d26"/><circle cx="102.40" cy="167.57" r="2.8" fill="#e85d26"/><circle cx="127.20" cy="152.29" r="2.8" fill="#e85d26"/><circle cx="152.00" cy="152.29" r="2.8" fill="#e85d26"/><circle cx="176.80" cy="167.57" r="2.8" fill="#e85d26"/><circle cx="201.60" cy="152.29" r="2.8" fill="#e85d26"/><circle cx="226.40" cy="159.93" r="2.8" fill="#e85d26"/><circle cx="251.20" cy="91.14" r="2.8" fill="#e85d26"/><circle cx="276.00" cy="60.57" r="2.8" fill="#e85d26"/><circle cx="300.80" cy="30.00" r="2.8" fill="#e85d26"/><circle cx="325.60" cy="37.64" r="2.8" fill="#e85d26"/><circle cx="350.40" cy="83.50" r="2.8" fill="#e85d26"/><circle cx="375.20" cy="137.00" r="2.8" fill="#e85d26"/><circle cx="400.00" cy="190.50" r="2.8" fill="#e85d26"/><text x="28.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">06:00</text><text x="102.40" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">09:00</text><text x="176.80" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">12:00</text><text x="251.20" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">15:00</text><text x="325.60" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">18:00</text><text x="400.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">21:00</text><text x="28" y="18" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2f80ed" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Regen % (Balken)</text><text x="28" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e85d26" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Temperatur °C (Linie)</text></svg>
+            </details>
+            
+            <p class="source">Quelle: Open-Meteo</p>
+        </aside>
+        
+            <h1>Morning<br>Edition</h1>
+            <p class="date">2026-07-07</p>
+            <ol class="toc">
+                <li><span>01</span><p>AI: The ROI Runway Could Be Long Outside the Tech Sector</p></li><li><span>02</span><p>OfficeCLI: Office suite for AI agents to read and edit Microsoft Office files</p><span class="toc-flag">For You</span></li><li><span>03</span><p>Composite Video on the NES: Why&#x27;s it so wobbly?</p></li><li><span>04</span><p>Show HN: Osint tool that finds exposed files on domains</p></li><li><span>05</span><p>The Complete Homemade Juggling Beanbag Guide</p></li><li><span>06</span><p>GPT-5.6 Sol Ultra will be in Codex</p></li><li><span>07</span><p>AMD Ryzen AI Halo – $4k AI Dev Kit</p></li><li><span>08</span><p>GLM 5.2 and the coming AI margin collapse</p></li><li><span>09</span><p>A global workspace in language models</p></li><li><span>10</span><p>Delta flight hit by firework while landing at Midway Airport on Fourth of July</p></li>
+            </ol>
+            <p class="dek">Curated from Hacker News · 10 stories that matter</p>
+        </div>
+    </header>
+
+    <main class="issue">
+        
+    <article class="story" style="--bg:#fff7ed;--fg:#1d161e;--accent:#f97316;">
+        <div class="story-top">
+            <span class="story-num">01</span>
+            
+        </div>
+        <h2><a href="https://www.apollo.com/wealth/insights-news/insights/daily-spark/ai-the-roi-runway-could-be-long-outside-the-tech-sector" target="_blank" rel="noreferrer">AI: The ROI Runway Could Be Long Outside the Tech Sector</a></h2>
+        <p class="meta">63 points · 69 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48810533" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#eefdf5;--fg:#123026;--accent:#10b981;">
+        <div class="story-top">
+            <span class="story-num">02</span>
+            <span class="flag">For You</span>
+        </div>
+        <h2><a href="https://github.com/iOfficeAI/OfficeCLI" target="_blank" rel="noreferrer">OfficeCLI: Office suite for AI agents to read and edit Microsoft Office files</a></h2>
+        <p class="meta">154 points · 40 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48807225" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f5f3ff;--fg:#24163a;--accent:#8b5cf6;">
+        <div class="story-top">
+            <span class="story-num">03</span>
+            
+        </div>
+        <h2><a href="https://nicole.express/2026/phase-altering-by-line.html" target="_blank" rel="noreferrer">Composite Video on the NES: Why&#x27;s it so wobbly?</a></h2>
+        <p class="meta">116 points · 9 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48798247" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#eff6ff;--fg:#16233d;--accent:#3b82f6;">
+        <div class="story-top">
+            <span class="story-num">04</span>
+            
+        </div>
+        <h2><a href="https://search.cerast-intelligence.com/" target="_blank" rel="noreferrer">Show HN: Osint tool that finds exposed files on domains</a></h2>
+        <p class="meta">57 points · 19 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48797656" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#fff1f2;--fg:#3f1d27;--accent:#f43f5e;">
+        <div class="story-top">
+            <span class="story-num">05</span>
+            
+        </div>
+        <h2><a href="https://www.joshuaclifton.com/juggle/" target="_blank" rel="noreferrer">The Complete Homemade Juggling Beanbag Guide</a></h2>
+        <p class="meta">64 points · 8 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48757215" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f7fee7;--fg:#24330f;--accent:#84cc16;">
+        <div class="story-top">
+            <span class="story-num">06</span>
+            
+        </div>
+        <h2><a href="https://twitter.com/thsottiaux/status/2073933490513752151" target="_blank" rel="noreferrer">GPT-5.6 Sol Ultra will be in Codex</a></h2>
+        <p class="meta">405 points · 387 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48799614" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#faf5ff;--fg:#2d163b;--accent:#a855f7;">
+        <div class="story-top">
+            <span class="story-num">07</span>
+            
+        </div>
+        <h2><a href="https://www.lttlabs.com/articles/2026/07/06/amd-ryzen-ai-halo" target="_blank" rel="noreferrer">AMD Ryzen AI Halo – $4k AI Dev Kit</a></h2>
+        <p class="meta">304 points · 218 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48805624" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#ecfeff;--fg:#12343a;--accent:#06b6d4;">
+        <div class="story-top">
+            <span class="story-num">08</span>
+            
+        </div>
+        <h2><a href="https://martinalderson.com/posts/the-upcoming-ai-margin-collapse-part-1-glm-5-2/" target="_blank" rel="noreferrer">GLM 5.2 and the coming AI margin collapse</a></h2>
+        <p class="meta">288 points · 186 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48809877" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#fffbeb;--fg:#3a2a12;--accent:#f59e0b;">
+        <div class="story-top">
+            <span class="story-num">09</span>
+            
+        </div>
+        <h2><a href="https://www.anthropic.com/research/global-workspace" target="_blank" rel="noreferrer">A global workspace in language models</a></h2>
+        <p class="meta">325 points · 125 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48808002" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f8fafc;--fg:#111827;--accent:#64748b;">
+        <div class="story-top">
+            <span class="story-num">10</span>
+            
+        </div>
+        <h2><a href="https://www.nbcchicago.com/news/local/delta-flight-hit-by-firework-while-landing-at-midway-airport-on-fourth-of-july/3957451/" target="_blank" rel="noreferrer">Delta flight hit by firework while landing at Midway Airport on Fourth of July</a></h2>
+        <p class="meta">168 points · 384 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=48797141" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+    </main>
+
+    <footer class="back-cover">
+        <p>
+            <strong>∎</strong>
+            Morning Edition · 2026-07-07<br>
+            Hacker News × Your Taste Profile
+        </p>
+    </footer>
+</body>
+</html>
