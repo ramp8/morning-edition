@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Edition — 2026-08-21</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #fffaf4;
+            --ink: #1d161e;
+            --accent: #f97316;
+            --muted: rgba(29, 22, 30, 0.58);
+            --line: rgba(29, 22, 30, 0.10);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; }
+        .cover {
+            min-height: 100vh;
+            padding: clamp(1.25rem, 5vw, 4rem);
+            background:
+                radial-gradient(circle at 80% 0%, rgba(249, 115, 22, 0.16), transparent 26rem),
+                linear-gradient(135deg, #fffaf4, #f7efe7);
+        }
+        .cover-inner {
+            width: min(960px, 100%);
+            margin: 0 auto;
+        }
+        .eyebrow, .date, .dek, .source, .weather-chart summary {
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 750;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        h1 {
+            max-width: 760px;
+            margin: 1.2rem 0 1rem;
+            font-family: Fraunces, serif;
+            font-size: clamp(3.7rem, 12vw, 8.5rem);
+            font-weight: 900;
+            letter-spacing: -0.075em;
+            line-height: 0.86;
+        }
+        .date { margin: 0 0 2rem; }
+        .weather {
+            margin-bottom: 1.6rem;
+            padding: 1rem;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.64);
+            box-shadow: 0 24px 70px rgba(52, 33, 20, 0.08);
+        }
+        .weather-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.9rem;
+        }
+        .weather strong { color: var(--accent); }
+        .weather-chart { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+        .weather-chart summary { cursor: pointer; }
+        .source, .dek { margin-top: 1.3rem; }
+        .toc {
+            display: grid;
+            gap: 0.6rem;
+            max-width: 760px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .toc li {
+            display: grid;
+            grid-template-columns: 2.6rem 1fr auto;
+            gap: 0.8rem;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.52);
+        }
+        .toc li > span:first-child, .story-num {
+            color: var(--accent);
+            font-family: Fraunces, serif;
+            font-weight: 900;
+        }
+        .toc p { margin: 0; color: #463947; }
+        .toc-flag, .flag {
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.55rem;
+            text-transform: uppercase;
+        }
+        .issue {
+            display: grid;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .story {
+            min-height: 48vh;
+            padding: clamp(1.4rem, 5vw, 4rem);
+            border: 1px solid color-mix(in srgb, var(--accent), transparent 78%);
+            border-radius: clamp(22px, 4vw, 36px);
+            background:
+                radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent), transparent 86%), transparent 18rem),
+                var(--bg);
+            color: var(--fg);
+            box-shadow: 0 18px 60px rgba(29, 22, 30, 0.07);
+        }
+        .story-top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.4rem; }
+        .story-num { font-size: 1.35rem; }
+        .story h2 {
+            max-width: 760px;
+            margin: 0;
+            font-family: Fraunces, serif;
+            font-size: clamp(2.2rem, 6vw, 4.8rem);
+            font-weight: 820;
+            letter-spacing: -0.045em;
+            line-height: 0.98;
+        }
+        .story h2 a { text-decoration: none; }
+        .story h2 a:hover { color: var(--accent); }
+        .meta { margin: 1rem 0 1.4rem; color: color-mix(in srgb, var(--fg), transparent 38%); }
+        .hn-link { color: var(--accent); font-weight: 850; text-decoration: none; }
+        .hn-link::after { content: " →"; }
+        .back-cover {
+            min-height: 28vh;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            text-align: center;
+        }
+        .back-cover strong { display: block; color: rgba(29, 22, 30, 0.22); font-size: 3rem; }
+        @media (max-width: 720px) {
+            .toc li { grid-template-columns: 2.2rem 1fr; }
+            .toc-flag { display: none; }
+            .story { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="cover">
+        <div class="cover-inner">
+            <p class="eyebrow">Daily Digest</p>
+            
+        <aside class="weather">
+            <p class="eyebrow">Wetter · Berlin</p>
+            <div class="weather-grid">
+                <span>Überwiegend klar</span>
+                <strong>15,5 °C</strong>
+                <strong>14,5–24,8 °C</strong>
+                <span>Regen 20 %</span>
+                <span>Wind 4 km/h</span>
+            </div>
+            
+            <details class="weather-chart">
+                <summary>Stündlicher Verlauf</summary>
+                <svg viewBox="0 0 420 300" width="100%" role="img" aria-label="Stündlicher Verlauf (06 bis 21 Uhr) von Temperatur und Regenwahrscheinlichkeit"><rect x="0" y="0" width="420" height="300" fill="#fffdfb"/><line x1="28" y1="244.00" x2="400" y2="244.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="190.50" x2="400" y2="190.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="137.00" x2="400" y2="137.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="83.50" x2="400" y2="83.50" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><line x1="28" y1="30.00" x2="400" y2="30.00" stroke="#1a1a1a" stroke-opacity="0.08" stroke-width="1"/><rect x="21.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="46.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="70.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="95.66" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="120.46" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="145.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="170.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="194.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="219.66" y="237.58" width="13.48" height="6.42" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="244.46" y="237.58" width="13.48" height="6.42" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="269.26" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="294.06" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="318.86" y="244.00" width="13.48" height="0.00" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="343.66" y="216.18" width="13.48" height="27.82" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="368.46" y="201.20" width="13.48" height="42.80" fill="#2f80ed" opacity="0.20" rx="1.8"/><rect x="393.26" y="216.18" width="13.48" height="27.82" fill="#2f80ed" opacity="0.20" rx="1.8"/><path d="M28.00 241.92 L52.80 244.00 L77.60 223.22 L102.40 177.51 L127.20 131.81 L152.00 102.72 L176.80 75.71 L201.60 57.01 L226.40 38.31 L251.20 32.08 L276.00 30.00 L300.80 50.78 L325.60 61.17 L350.40 73.63 L375.20 100.64 L400.00 129.73" fill="none" stroke="#e85d26" stroke-width="2.2"/><circle cx="28.00" cy="241.92" r="2.8" fill="#e85d26"/><circle cx="52.80" cy="244.00" r="2.8" fill="#e85d26"/><circle cx="77.60" cy="223.22" r="2.8" fill="#e85d26"/><circle cx="102.40" cy="177.51" r="2.8" fill="#e85d26"/><circle cx="127.20" cy="131.81" r="2.8" fill="#e85d26"/><circle cx="152.00" cy="102.72" r="2.8" fill="#e85d26"/><circle cx="176.80" cy="75.71" r="2.8" fill="#e85d26"/><circle cx="201.60" cy="57.01" r="2.8" fill="#e85d26"/><circle cx="226.40" cy="38.31" r="2.8" fill="#e85d26"/><circle cx="251.20" cy="32.08" r="2.8" fill="#e85d26"/><circle cx="276.00" cy="30.00" r="2.8" fill="#e85d26"/><circle cx="300.80" cy="50.78" r="2.8" fill="#e85d26"/><circle cx="325.60" cy="61.17" r="2.8" fill="#e85d26"/><circle cx="350.40" cy="73.63" r="2.8" fill="#e85d26"/><circle cx="375.20" cy="100.64" r="2.8" fill="#e85d26"/><circle cx="400.00" cy="129.73" r="2.8" fill="#e85d26"/><text x="28.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">06:00</text><text x="102.40" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">09:00</text><text x="176.80" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">12:00</text><text x="251.20" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">15:00</text><text x="325.60" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">18:00</text><text x="400.00" y="282" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1f1f1f" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">21:00</text><text x="28" y="18" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#2f80ed" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Regen % (Balken)</text><text x="28" y="36" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#e85d26" stroke="#ffffff" stroke-opacity="0.96" stroke-width="2.2" paint-order="stroke fill">Temperatur °C (Linie)</text></svg>
+            </details>
+            
+            <p class="source">Quelle: Open-Meteo</p>
+        </aside>
+        
+            <h1>Morning<br>Edition</h1>
+            <p class="date">2026-08-21</p>
+            <ol class="toc">
+                <li><span>01</span><p>Supersonic Trebuchet [video]</p></li><li><span>02</span><p>Aaron Swartz was prosecuted for scraping, while Meta does it without consequence</p></li><li><span>03</span><p>Don&#x27;t paste the AI, please</p></li><li><span>04</span><p>A joke domain purchase turned in geopolitical warfare</p></li><li><span>05</span><p>Hacking with Claude on a $27 smart watch</p></li><li><span>06</span><p>Show HN: Check if any of the $656M in unclaimed royalties at The MLC is yours</p></li><li><span>07</span><p>Google has stopped pushing Git tags for some Android source code</p></li><li><span>08</span><p>Early-life stress leaves a &#x27;scar&#x27; inside brain cells</p></li><li><span>09</span><p>Go 1.27</p></li><li><span>10</span><p>Vomit: Clean up Claude 5&#x27;s token output with a separate LLM</p></li>
+            </ol>
+            <p class="dek">Curated from Hacker News · 10 stories that matter</p>
+        </div>
+    </header>
+
+    <main class="issue">
+        
+    <article class="story" style="--bg:#fff7ed;--fg:#1d161e;--accent:#f97316;">
+        <div class="story-top">
+            <span class="story-num">01</span>
+            
+        </div>
+        <h2><a href="https://www.youtube.com/watch?v=Co57SfcT-h0" target="_blank" rel="noreferrer">Supersonic Trebuchet [video]</a></h2>
+        <p class="meta">253 points · 112 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49306207" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#eefdf5;--fg:#123026;--accent:#10b981;">
+        <div class="story-top">
+            <span class="story-num">02</span>
+            
+        </div>
+        <h2><a href="https://blog.curiousquail.com/im-upset-again-about-a-co-creator-of-rss-being-prosecuted-for-something-meta-is-doing-with-little-consequence/" target="_blank" rel="noreferrer">Aaron Swartz was prosecuted for scraping, while Meta does it without consequence</a></h2>
+        <p class="meta">1,298 points · 288 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49379550" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f5f3ff;--fg:#24163a;--accent:#8b5cf6;">
+        <div class="story-top">
+            <span class="story-num">03</span>
+            
+        </div>
+        <h2><a href="https://dontpastetheai.com/" target="_blank" rel="noreferrer">Don&#x27;t paste the AI, please</a></h2>
+        <p class="meta">1,004 points · 553 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49371857" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#eff6ff;--fg:#16233d;--accent:#3b82f6;">
+        <div class="story-top">
+            <span class="story-num">04</span>
+            
+        </div>
+        <h2><a href="https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/" target="_blank" rel="noreferrer">A joke domain purchase turned in geopolitical warfare</a></h2>
+        <p class="meta">1,011 points · 167 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49360015" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#fff1f2;--fg:#3f1d27;--accent:#f43f5e;">
+        <div class="story-top">
+            <span class="story-num">05</span>
+            
+        </div>
+        <h2><a href="https://www.mikekasberg.com/blog/2026/08/19/hacking-with-claude-on-a-27-smart-watch.html" target="_blank" rel="noreferrer">Hacking with Claude on a $27 smart watch</a></h2>
+        <p class="meta">92 points · 48 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49374772" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f7fee7;--fg:#24330f;--accent:#84cc16;">
+        <div class="story-top">
+            <span class="story-num">06</span>
+            
+        </div>
+        <h2><a href="https://pub.doub.ly/" target="_blank" rel="noreferrer">Show HN: Check if any of the $656M in unclaimed royalties at The MLC is yours</a></h2>
+        <p class="meta">69 points · 37 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49375237" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#faf5ff;--fg:#2d163b;--accent:#a855f7;">
+        <div class="story-top">
+            <span class="story-num">07</span>
+            
+        </div>
+        <h2><a href="https://grapheneos.social/@GrapheneOS/117057099753905023" target="_blank" rel="noreferrer">Google has stopped pushing Git tags for some Android source code</a></h2>
+        <p class="meta">797 points · 312 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49364745" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#ecfeff;--fg:#12343a;--accent:#06b6d4;">
+        <div class="story-top">
+            <span class="story-num">08</span>
+            
+        </div>
+        <h2><a href="https://medicine.washu.edu/news/how-early-life-stress-leaves-a-scar-inside-brain-cells/" target="_blank" rel="noreferrer">Early-life stress leaves a &#x27;scar&#x27; inside brain cells</a></h2>
+        <p class="meta">30 points · 8 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49380303" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#fffbeb;--fg:#3a2a12;--accent:#f59e0b;">
+        <div class="story-top">
+            <span class="story-num">09</span>
+            
+        </div>
+        <h2><a href="https://go.dev/blog/go1.27" target="_blank" rel="noreferrer">Go 1.27</a></h2>
+        <p class="meta">742 points · 261 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49365405" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+
+    <article class="story" style="--bg:#f8fafc;--fg:#111827;--accent:#64748b;">
+        <div class="story-top">
+            <span class="story-num">10</span>
+            
+        </div>
+        <h2><a href="https://github.com/zachahn/vomit" target="_blank" rel="noreferrer">Vomit: Clean up Claude 5&#x27;s token output with a separate LLM</a></h2>
+        <p class="meta">224 points · 231 comments</p>
+        <a class="hn-link" href="https://news.ycombinator.com/item?id=49375996" target="_blank" rel="noreferrer">Read HN</a>
+    </article>
+    </main>
+
+    <footer class="back-cover">
+        <p>
+            <strong>∎</strong>
+            Morning Edition · 2026-08-21<br>
+            Hacker News × Your Taste Profile
+        </p>
+    </footer>
+</body>
+</html>
